@@ -2,10 +2,12 @@ package com.example.dices;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,14 +15,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     public void pressButton(View view) {
+
+        // Values of each dice
         String d1 = "ARMSTYPUKSCL";
         String d2 = "*JRHTDTOVPSV";
         String d3 = "*LNBKÖ*PEKIT";
         String d4 = "GOMAFEHUSEJÄ";
 
+        // Randomly select value for each dice
         Random rand = new Random();
         int n1 = rand.nextInt(12);
         int n2 = rand.nextInt(12);
