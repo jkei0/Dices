@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -12,7 +13,10 @@ import java.util.List;
 import java.util.Random;
 
 
+
+
 public class MainActivity extends AppCompatActivity {
+    private int rollTimes = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void pressButton(View view)
     {
+        setTimeOut();
+    }
+
+    private void setTimeOut() {
+    // Animates the dice roll
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (rollTimes < 30) {
+                    rollDice();
+                    setTimeOut();
+
+                } else {
+                    rollTimes = 0;
+                }
+            }
+        }, 30);
+    }
+
+    private void rollDice() {
+
+        rollTimes++;
 
         // Value for each dice
         List<Integer> d1 = Arrays.asList(R.drawable.a,R.drawable.r,R.drawable.m,R.drawable.s,R.drawable.t,R.drawable.y,
@@ -38,9 +66,12 @@ public class MainActivity extends AppCompatActivity {
         //String d3 = "*LNBKÖ*PEKIT";
 
         List<Integer> d4 = Arrays.asList(R.drawable.g,R.drawable.o,R.drawable.m,R.drawable.a,
-                                            R.drawable.f,R.drawable.e,R.drawable.h,R.drawable.u,R.drawable.s,
-                                            R.drawable.e,R.drawable.j,R.drawable.aa);
+                R.drawable.f,R.drawable.e,R.drawable.h,R.drawable.u,R.drawable.s,
+                R.drawable.e,R.drawable.j,R.drawable.aa);
         //String d4 = "GOMAFEHUSEJÄ";
+
+
+
 
         // Randomly select value for each dice
         Random rand = new Random();
@@ -68,3 +99,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+
